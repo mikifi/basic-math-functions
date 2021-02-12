@@ -1,6 +1,23 @@
 # Implementation:
 * Reverse polish notation calculater from https://gist.github.com/lwiecek/952b6bca77c843e83c5d5577da9fd37e
 
+
+## Input
+
+The lamdba takes a reverse polish notation expression as input (as json), e.g:
+
+```json
+{"expression": "3 2 /"}
+```
+## Output
+
+The output is either an error object or a json with the result, e.g:
+
+```json
+{"result":1.5}
+```
+
+
 # Prerequisites:
 * go
 * aws cli 
@@ -13,10 +30,9 @@ aws iam attach-role-policy --role-name lambda-basic-execution --policy-arn arn:a
 
 # Local build:
 ```sh
-#go mod init github.com/mikifi/basic-math-functions        
-go get "github.com/aws/aws-lambda-go/lambda"
+#go get "github.com/aws/aws-lambda-go/lambda"
 rm main.zip || true; GOOS=linux GOARCH=amd64 go build -o main .; zip main.zip main
-
+aws s3 cp main.zip s3://mikifi-deploy/
 ```
 
 # Local deploy and invoke
@@ -29,22 +45,13 @@ aws lambda invoke --function-name simple_calc --invocation-type "RequestResponse
 cat response.txt 
 ```
 
-## Input
-
-The lamdba takes a reverse polish notation expression as input (as json), e.g:
-
-```json
-{"expression": "3 2 /"}
-```
-## Output
-
-The output is either an error object or a json with the result, e.g: 
-
-```json
-{"result":1.5}
+# CloudFormation deploy
+```sh
+aws cloudformation deploy --template-file cf_functions.yaml --stack-name simple-calc
 ```
 
 # TODO
+* Adding bucket, zip (copy) and iam role to cloudformation config
 * Adding unit tests and functional tests
 * ci/cd pipeline
 * Either json or yaml config, not both

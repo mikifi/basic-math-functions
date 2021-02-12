@@ -1,13 +1,16 @@
-Type: AWS::Lambda::Function
-Properties: 
-  Code: 
-    Code
-  Description: Basic arithmentics
-  Environment: 
-    Environment
-  FunctionName: String
-  Handler: String
-  PackageType: Zip
-  Role: arn:aws:iam::123456789012:role/123
-  Runtime: go1.x
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Simple calculator'
+Resources:
+  SimpleCalc:     
+    Type: AWS::Lambda::Function
+    Properties: 
+      Code: 
+        S3Bucket: mikifi-deploy
+        S3Key: main.zip
+      Description: Basic arithmentics
+      FunctionName: simple_calc
+      Handler: main
+      PackageType: Zip
+      Role: arn:aws:iam::801927127646:role/lambda-basic-execution
+      Runtime: go1.x
 
