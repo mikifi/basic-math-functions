@@ -32,7 +32,7 @@ aws iam attach-role-policy --role-name lambda-basic-execution --policy-arn arn:a
 ```sh
 #go get "github.com/aws/aws-lambda-go/lambda"
 export GOPATH=`pwd`
-rm main.zip || true; GOOS=linux GOARCH=amd64 go build -o main cmd/main; zip main.zip main
+rm main.zip || true; GOOS=linux GOARCH=amd64 go build -o main cmd/main; zip main.zip main; rm main || true
 aws s3 cp main.zip s3://mikifi-deploy/
 ```
 
