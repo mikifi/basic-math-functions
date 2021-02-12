@@ -24,10 +24,13 @@ rm main.zip || true; GOOS=linux GOARCH=amd64 go build -o main .; zip main.zip ma
 ```sh
 aws lambda create-function --function-name simple_calc --zip-file fileb://main.zip --handler main --runtime go1.x --role "arn:aws:iam::801927127646:role/lambda-basic-execution"
 
-aws lambda invoke --function-name simple_calc --invocation-type "RequestResponse" --payload '{"name": "af3"}' --cli-binary-format raw-in-base64-out  response.txt
+aws lambda invoke --function-name simple_calc --invocation-type "RequestResponse" --payload '{"expression": "3 3 *"}' --cli-binary-format raw-in-base64-out  response.txt
 
 cat response.txt 
 ```
 
 
-
+# TODO
+* Adding unit tests and functional tests
+* ci/cd pipeline
+* go mod?
