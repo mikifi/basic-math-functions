@@ -27,6 +27,7 @@ The output is either an error object or a json with the result, e.g:
 ```sh
 #go get "github.com/aws/aws-lambda-go/lambda"
 export GOPATH=`pwd`
+go test cmd/main 
 rm main.zip || true; GOOS=linux GOARCH=amd64 go build -o main cmd/main; zip main.zip main; rm main || true
 aws s3 cp main.zip s3://mikifi-deploy/
 ```
@@ -63,6 +64,3 @@ aws cloudformation delete-stack --stack-name simple-calc
 aws lambda invoke --function-name simple_calc --invocation-type "RequestResponse" --payload '{"expression": "3 3 *"}' --cli-binary-format raw-in-base64-out response.json; cat response.json 
 ```
 
-# TODO
-* Adding unit tests and functional tests
-* ci/cd pipeline
