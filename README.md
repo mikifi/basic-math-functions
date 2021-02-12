@@ -29,8 +29,23 @@ aws lambda invoke --function-name simple_calc --invocation-type "RequestResponse
 cat response.txt 
 ```
 
+## Input
+
+The lamdba takes a reverse polish notation expression as input (as json), e.g:
+
+```json
+{"expression": "3 2 /"}
+```
+## Output
+
+The output is either an error object or a json with the result, e.g: 
+
+```json
+{"result":1.5}
+```
 
 # TODO
 * Adding unit tests and functional tests
 * ci/cd pipeline
+* Either json or yaml config, not both
 * go mod?
