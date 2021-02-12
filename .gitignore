@@ -3,4 +3,6 @@ main.zip
 .role
 response.*
 pkg
+bin
 src/github.com
+src/golang.org

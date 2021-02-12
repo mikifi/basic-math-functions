@@ -12,6 +12,7 @@ func pop2(stack []float64) ([]float64, float64, float64) {
 	return stack, ab[0], ab[1]
 }
 
+// ReversePolishNotation is a simple calculator evaluating an input string
 func ReversePolishNotation(s string) (float64, error) {
 	var stack []float64
 	var tokens = strings.Fields(s)
@@ -48,5 +49,3 @@ func ReversePolishNotation(s string) (float64, error) {
 	}
 	return stack[0], nil
 }
-
-
