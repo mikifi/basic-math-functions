@@ -35,7 +35,12 @@ aws s3 cp main.zip s3://mikifi-deploy/
 ## Local deploy
 
 ```sh
-aws lambda create-function --function-name simple_calc --zip-file fileb://main.zip --handler main --runtime go1.x --role "arn:aws:iam::801927127646:role/lambda-basic-execution"
+aws lambda create-function --function-name simple_calc --zip-file fileb://main.zip --handler main --runtime go1.x --role "<an existing role>"
+```
+### Delete
+
+```sh
+aws lambda delete-function --function-name simple_calc                
 ```
 
 ## CloudFormation deploy
