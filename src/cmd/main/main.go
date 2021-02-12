@@ -2,7 +2,7 @@ package main
 
 import (
         "context"
-	rpn "internal/reverspolishnotation"
+        rpn "internal/reverspolishnotation"
         "github.com/aws/aws-lambda-go/lambda"
 )
 

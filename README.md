@@ -44,6 +44,9 @@ aws lambda delete-function --function-name simple_calc
 ```
 
 ## CloudFormation deploy
+
+This [deploy](src/build/cf_functions.yaml) assumes the lambda artifact is available as `main.zip` in the `mikifi-deploy` bucket (see local build above).
+
 ```sh
 aws cloudformation deploy --template-file src/build/cf_functions.yaml --stack-name simple-calc --capabilities CAPABILITY_NAMED_IAM
 ```
@@ -57,9 +60,7 @@ aws cloudformation delete-stack --stack-name simple-calc
 # Invoke
 
 ```sh
-aws lambda invoke --function-name simple_calc --invocation-type "RequestResponse" --payload '{"expression": "3 3 *"}' --cli-binary-format raw-in-base64-out  response.txt
-
-cat response.txt 
+aws lambda invoke --function-name simple_calc --invocation-type "RequestResponse" --payload '{"expression": "3 3 *"}' --cli-binary-format raw-in-base64-out response.json; cat response.json 
 ```
 
 # TODO
